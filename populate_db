@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+python manage.py reset_db --noinput
+python manage.py migrate
+
+for file in ./seriados/fixtures/*.json
+do
+echo "runnning fixture: $file"
+  python manage.py loaddata "$file"
+done
